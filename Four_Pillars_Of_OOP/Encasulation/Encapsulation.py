@@ -5,7 +5,7 @@ class Citizen:
     def __init__(self, name, age , resident_id):
         '''이름, 나이 ,주민등록번호'''
         self.name = name
-        self.__age = age
+        self.set_age(age) # 나이에 음수 들어가지 않도록 하기
         self.__residnet_id = resident_id
     
     def authenticate(self, id_field):
@@ -26,11 +26,15 @@ class Citizen:
     
     def set_age(self,value):
         '''age값을 쓸 수 있도록 하는 메소드'''
-        self.__age = value
+        #나이 음수 설정 막기
+        if value < 0:
+            print("나이는 0보다 작을 수 없습니다. 기본 값 0으로 나이를 설정하겠습니다.")
+            self.__age = 0
 
-young = Citizen("Younghoo kang" , 18 , "12345678")
+        else: self.__age = value
+young = Citizen("Younghoo kang" , -18 , "12345678")
 
-print(young.get_age)
+print(young.get_age())
 
 young.set_age(25)
-print(young.get_age)
+print(young.get_age())
