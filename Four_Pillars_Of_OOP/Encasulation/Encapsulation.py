@@ -5,33 +5,34 @@ class Citizen:
     def __init__(self, name, age , resident_id):
         '''이름, 나이 ,주민등록번호'''
         self.name = name
-        self.set_age(age) # 나이에 음수 들어가지 않도록 하기
-        self.__residnet_id = resident_id
+        self.age = age
+        self.residnet_id = resident_id
     
     def authenticate(self, id_field):
         '''본인이 맞는지 확인하는 메소드'''
-        return self.__residnet_id == id_field
+        return self.residnet_id == id_field
     
     def can_drink(self):
         '''음주 가능 나이인지 확인하는 메소드'''
-        return self.__age >= Citizen.drink_age
+        return self.age >= Citizen.drink_age
     
     def __str__(self):
         '''주민 정보를 문자열로 반환하는 메소드'''
-        return self.name + "씨는 "+str(self.__age)+"살입니다!"
-    
-    def get_age(self):
-        '''age값을 읽을 수 있도록 하는 메소드'''
-        return self.__age
-    
-    def set_age(self,value):
-        '''age값을 쓸 수 있도록 하는 메소드'''
-        #나이 음수 설정 막기
-        if value < 0:
-            print("나이는 0보다 작을 수 없습니다. 기본 값 0으로 나이를 설정하겠습니다.")
-            self.__age = 0
+        return self.name + "씨는 "+str(self.age)+"살입니다!"
 
-        else: self.__age = value
+    @property
+    def age(self):
+        print("나이를 반환합니다.")
+        return self._age
+
+    @age.setter
+    def age(self,value):
+        print("나이를 설정합니다")
+        if value < 0:
+            print("나이는 0보다 작을 수 없습니다. 기본값 0으로 나이를 설정하겠습니다.")
+            self._age = 0
+        else: self._age = value
+
 young = Citizen("Younghoo kang" , -18 , "12345678")
 
 print(young.get_age())
