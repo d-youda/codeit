@@ -19,12 +19,18 @@ class Citizen:
     def __str__(self):
         '''주민 정보를 문자열로 반환하는 메소드'''
         return self.name + "씨는 "+str(self.__age)+"살입니다!"
+    
+    def get_age(self):
+        '''age값을 읽을 수 있도록 하는 메소드'''
+        return self.__age
+    
+    def set_age(self,value):
+        '''age값을 쓸 수 있도록 하는 메소드'''
+        self.__age = value
 
-kyusik = Citizen("최규식" , 25 , "12345678")
-young = Citizen("Younghoo kang" , 5 , "87654321") #어린이
+young = Citizen("Younghoo kang" , 18 , "12345678")
 
-print(kyusik.residnet_id) #주민등록번호 유출 가능
+print(young.get_age)
 
-kyusik.age = -12
-print(kyusik)
-kyusik.authenticate("12345678")
+young.set_age(25)
+print(young.get_age)
